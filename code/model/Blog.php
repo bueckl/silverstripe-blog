@@ -758,7 +758,8 @@ class Blog_Controller extends Page_Controller
 
         if ($year) {
             $this->blogPosts = $dataRecord->getArchivedBlogPosts($year, $month, $day);
-
+			
+			$this->CanonicalLink = $this->AbsoluteLink();
             return $this->render();
         }
 
@@ -838,6 +839,7 @@ class Blog_Controller extends Page_Controller
             if($this->isRSS()) {
             	return $this->rssFeed($this->blogPosts, $tag->getLink());
             } else {
+				$this->CanonicalLink = $this->AbsoluteLink();
             	return $this->render();
             }
         }
@@ -882,6 +884,7 @@ class Blog_Controller extends Page_Controller
             if($this->isRSS()) {
             	return $this->rssFeed($this->blogPosts, $category->getLink());
             } else {
+				$this->CanonicalLink = $this->AbsoluteLink();
             	return $this->render();
             }
         }
